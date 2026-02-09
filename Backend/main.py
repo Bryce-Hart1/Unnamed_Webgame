@@ -14,4 +14,4 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
-    return {"message": "Risk game server running"}
+    return {"message": "server running"}
