@@ -1,10 +1,18 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import createMap as CM # When using something from create map us CM
+import mapData as Mdata # same here
+import user
 
-app = FastAPI()
+
+
+
+
+application = FastAPI()
+
 
 # Allow frontend connection
-app.add_middleware(
+application.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=True,
@@ -12,6 +20,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/")
+
+
+
+@application.get("/")
 def read_root():
     return {"message": "server running"}

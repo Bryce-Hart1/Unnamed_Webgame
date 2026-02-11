@@ -2,6 +2,14 @@ import random
 
 
 
+#gives a cord (inside the chunk), along with a string saying what has been drawn
+class drawn: 
+    def __init__(self, x : int, y : int, object : str):
+        self.X = x
+        self.Y = y
+        self.object = object
+
+
 class resource:
     def __init__(self, hasMetal : bool, hasWood : bool, hasGold : bool, hasOil : bool, hasSilcon : bool, hasUranium : bool):
         self.Iron = hasMetal
@@ -17,10 +25,22 @@ class resource:
     
 
 class chunk:
-    def __init__(self, size, ore, type):
-        self.ore = ore
+    def __init__(self, size : int, r : resource, type : str):
+        self.resources = r
         self.size = size
         self.type = type
+        self.drawnAt = []
+
+    def Draw(self, x : int, y : int, picture : str):
+        self.drawnAt.append((drawn(x,y,picture)))
+        return
+    
+    def Erase(self, x : int, y : int):
+        #we need a way (eventually because the implementation is tricky) to fill squares with thier original state.
+        #my current thnking (so we dont have to have a lookup) is that we have predefined textures for spots. Lets say that there is a 
+        # building destroyed at 4,4. Well, we could have a new texture to replace that one. we can either restore it (to say, grass) or 
+        #something else, like rubble. 
+        pass #pass basically is used for unfilled functions
 
         
 # returns a random precent. For example
