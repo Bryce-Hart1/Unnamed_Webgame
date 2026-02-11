@@ -2,8 +2,9 @@
 
 
 class user:
-    def __init__(self, userName : str):
+    def __init__(self, userName : str, isHost : bool):
         self.name = userName
+        self.isTheHost = isHost
         self.color = "DEF"
         self.res_people = 0
         self.res_wood = 0
