@@ -5,5 +5,6 @@ def printMap(map):
         print(item + ", ")
 
 def main():
-    
-    print()
+    myMapTest = createMap.generateMap()
+    for chunk in myMapTest:
+        print(createMap.chunk.displayResources() + "\n")

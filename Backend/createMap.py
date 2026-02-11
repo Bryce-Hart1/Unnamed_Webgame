@@ -3,14 +3,18 @@ import random
 
 
 class resource:
-    def __init__(self, hasMetal, hasWood, hasGold, hasOil, hasSilcon, hasUranium):
+    def __init__(self, hasMetal : bool, hasWood : bool, hasGold : bool, hasOil : bool, hasSilcon : bool, hasUranium : bool):
         self.Iron = hasMetal
         self.Gold = hasGold
         self.Wood = hasWood
         self.Oil = hasOil
         self.Silcon = hasSilcon
         self.Uranium = hasUranium
+    def displayResources(self): 
+        print("Iron: {}, Gold: {}, Wood: {}, Oil: {}, Silcon: {}, Uranium", self.Iron,
+               self.Gold, self.Gold, self.Wood, self.Oil, self.Silcon, self.Uranium)
 
+    
 
 class chunk:
     def __init__(self, size, ore, type):
@@ -27,12 +31,26 @@ def getRandomChance(precent):
 
 
 def pickResource(onWater):
+    if(onWater):
+        return resource(False, False, False, True, False, False) #temp for now, only returns oil
+    if(getRandomChance(25)): #25 precent chance to do this
+        return resource(False, True, False, False, False, False) #returns wood as the resource
+    if(getRandomChance(25)): #25 percent oil well chance
+        return resource(False, False, False, True, False, False)
+    #otherwise pick from ores the ground ores and have a chance at generating
+    uMine = getRandomChance(10) #10 precent chance to get uranium mine
+    sMine = getRandomChance(15) #15 precent chance to get silcon
+    mMine = True #always get metal
+    gMine = getRandomChance(35)
+    return resource(mMine, False, gMine, False, sMine, uMine)
+
     #currently not finished. We need a way to determine (randomly generated or not) what resources a spot should generate.
     #for example, if we have a water spot, we should not be able to place trees or ores for example, only oil, because this is the only one that makes
     #sense in this spot. Another example is if we have a tree farm, we should not be able to also have metals on this spot. This is still up for discussion,
     #but I dont think we should be able to have multiple mines on one chunk, my thinking its its one of the three (not multiple for a chunk) - Tree OR Oil OR
     # ores, and for water, it should be just oil, but maybe at a higher rate, but we can add that later
-    return resource(True, True, True, True, True, True) #placeholder, but you see how this class should return
+
+
 
 
 #returns a chunk object. For now we could have it hard set for some sort of pattern, but this should generate EVERYTHING relating to the chunk, including type,
