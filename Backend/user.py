@@ -13,11 +13,22 @@ class user:
         self.res_silcon = 0
         self.res_uranium = 0
         self.chunksOwned = [] # list of chunks
-        self.baseOrigin
-    def setOrigin(x : int, y : int):
-        pass
+        self.baseOriginX = -1
+        self.baseOriginY = -1
+
+    #origin should always set before the game begins, same with color
+    def setOrigin(self, x : int, y : int):
+        self.baseOriginX = x
+        self.baseOriginY = y
+        return
+
+    def setColor(self, colorToSet : str):
+        self.color = colorToSet
 
     def gainedChunk():
+        pass
+
+    def stolenChunk():
         pass
 
     def lostChunk():

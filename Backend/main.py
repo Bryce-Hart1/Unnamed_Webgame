@@ -6,6 +6,11 @@ import user
 
 
 
+#defines a single game instance. can be multiple at one time.
+class game:
+    def __init__(self):
+        pass
+
 
 
 application = FastAPI()
