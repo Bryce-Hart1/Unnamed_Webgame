@@ -19,8 +19,7 @@ class Resource:
         self.Silcon = hasSilcon
         self.Uranium = hasUranium
     def displayResources(self): 
-        print("I: {}, G: {}, W: {}, O: {}, S: {}, U", self.Iron,
-               self.Gold, self.Gold, self.Wood, self.Oil, self.Silcon, self.Uranium)
+        print(self.Iron, self.Gold, self.Gold, self.Wood, self.Oil, self.Silcon, self.Uranium)
 
     
 
@@ -51,9 +50,9 @@ class chunk:
         
 # returns a random precent. For example
 # if you want a 50% chance of an event: precent = 50
-def getRandomChance(precent):
-    roll = random(1,100)
-    return (roll < precent)
+def getRandomChance(percent):
+    roll = random.randint(1,100)
+    return (roll <= percent)
 
 
 def pickResource(onWater):
@@ -83,10 +82,20 @@ def pickResource(onWater):
 # whats underneath, what the surface looks like, etc. I think we should build and flush out this function, but leave the more random generation parts out of it 
 # for now. Right now it should just return a chunk object for the map
 def generateChunk(remaining):
-    
+    SET_CHUNK_SIZE = 64
+    biomes = ("desert", "grassland") #list of biomes to pick from
+    resourcesForChunk
+    #first pick biome
+    if getRandomChance(50): #50% chance to be land
+        resourcesForChunk = pickResource(False)
+        returnChunk = chunk(SET_CHUNK_SIZE,resourcesForChunk, "Desert") #format
+    else:
+        resourcesForChunk = pickResource(True)
+        returnChunk = chunk(64)
 
-    ores = pickResource(False)
-    returnChunk = chunk('r',ores, "Desert") #format
+
+
+    return returnChunk
 
         
 #fill a list (Like a vector) with all of the chunks for this map. So say our map is 8 x 8, we have 64 chunks to generate.) Then when we go to print on the
