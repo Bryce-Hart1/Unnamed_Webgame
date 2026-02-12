@@ -4,27 +4,26 @@ import createMap as CM # When using something from create map us CM
 import mapData as Mdata # same here
 import user as userf
 from enum import Enum
-
+import random 
 
 class possibleGameStates(Enum):
     IN_LOBBY = 1
     IN_GAME = 2
     GAME_OVER = 3
 
+active_games = [] #store all games that are going on right now here
 
-def createGameCode():
-    pass
 
-def initalizeMap():
-    pass
 
+def createNewGame():
+    return game()
 
 #defines a single game instance. can be multiple at one time.
 #we need setters so game variables can be easily updated
 class game:
     def __init__(self):
-        self.currentGameState = possibleGameStates.IN_GAME
-        self.currentGameCode = createGameCode()
+        self.currentGameState = possibleGameStates.IN_LOBBY
+        self.currentGameCode = Mdata.createGameCode()
         self.users = [] #maybe when constructor is called we could already put the host in this?
 
         pass
@@ -38,9 +37,6 @@ class game:
     def assignUserColor(self):
         pass
         
-
-
-
 
 
 application = FastAPI()
