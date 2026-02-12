@@ -1,4 +1,11 @@
+from enum import Enum
 
+
+#these states are only used when the player is in the game
+class userStates(Enum):
+    FLOATING = 0 #in lobby or in game over screen, etc. Any time they arent in game
+    MAIN_SCREEN = 1
+    UPGRADE_SCREEN = 2
 
 
 class user:

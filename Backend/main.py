@@ -6,27 +6,40 @@ import user as userf
 from enum import Enum
 import random 
 
-class possibleGameStates(Enum):
+class gameStates(Enum):
     IN_LOBBY = 1
     IN_GAME = 2
     GAME_OVER = 3
+    END_OF_GAME_RESULTS = 4
+    END_INSTANCE = 5
 
 active_games = [] #store all games that are going on right now here
 
 
+#returns the size of active games, and that will be the id for the current game
+def setGameId():
+    return len(active_games)
 
 def createNewGame():
     return game()
+
+
+#takes this game out of scope by taking in the value in the list where it is stored
+def endThisGame(thisGame : int):
+    active_games.remove(thisGame)
+    return
+
 
 #defines a single game instance. can be multiple at one time.
 #we need setters so game variables can be easily updated
 class game:
     def __init__(self):
-        self.currentGameState = possibleGameStates.IN_LOBBY
+        MAX_PLAYERS = 8 #if this is reached, no one else can join
+        self.id = setGameId()
+        self.currentGameState = gameStates.IN_LOBBY
         self.currentGameCode = Mdata.createGameCode()
         self.users = [] #maybe when constructor is called we could already put the host in this?
 
-        pass
 
     def userJoined(self):
         pass
