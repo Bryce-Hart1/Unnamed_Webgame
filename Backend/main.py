@@ -4,7 +4,6 @@ import createMap as CM # When using something from create map us CM
 import mapData as Mdata # same here
 import user as userf
 from enum import Enum
-import random 
 
 class gameStates(Enum):
     IN_LOBBY = 1
@@ -19,6 +18,7 @@ active_games = [] #store all games that are going on right now here
 #returns the size of active games, and that will be the id for the current game
 def setGameId():
     return len(active_games)
+
 
 def createNewGame():
     return game()
@@ -38,20 +38,30 @@ class game:
         self.id = setGameId()
         self.currentGameState = gameStates.IN_LOBBY
         self.currentGameCode = Mdata.createGameCode()
-        self.users = [] #maybe when constructor is called we could already put the host in this?
+        self.users = [] #maybe when constructor is called we could already put the host in this? (right now i have implemented a workaround)
+        self.map = CM.generateMap()
 
 
     def userJoined(self):
-        pass
-
-    def userLeft(self, usersId : str):
-        pass
-
-    def assignUserColor(self):
+        #this should not have logic related to the individual, rather just the user as it relates to this game instance
+        #for example, base origin, and checking what player number they are in this list
         pass
         
 
+    def userLeft(self, usersId : str):
+        self.users.remove(usersId)
+        
 
+
+
+
+#user requested new game
+def pressedStartNewGame():
+    currentGame = createNewGame()
+    currentGame.userJoined(userf.createNewUser())
+
+
+#server related functions go below here
 application = FastAPI()
 
 

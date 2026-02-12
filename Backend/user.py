@@ -9,10 +9,10 @@ class userStates(Enum):
 
 
 class user:
-    def __init__(self, userName : str, isHost : bool):
+    def __init__(self, userName : str, isHost : bool, color : str):
         self.name = userName
         self.isTheHost = isHost
-        self.color = "DEF"
+        self.color = color
         self.res_people = 0
         self.res_wood = 0
         self.res_metal = 0
@@ -34,9 +34,11 @@ class user:
         self.color = colorToSet
 
     def gainedChunk():
+        #if the player gets a new chunk. This cannot be stoleChunk, as this is from another player
         pass
 
-    def stolenChunk():
+        
+    def stoleChunk():
         pass
 
     def lostChunk():
@@ -47,7 +49,6 @@ class user:
 
         if resource == 'people' : 
             self.res_people += amount
-            return
         elif resource == 'wood' : 
             self.res_wood += amount
         elif resource == 'metal':
@@ -64,3 +65,7 @@ class user:
             print("incrementResource not found value: {}", resource)
 
             
+def createNewUser(isFirstPlayer : bool):
+    #prompt the frontend to pull up a user creation page. We can talk about what the implementation might be.
+    #this implementation should let them set a color (For now allow duplicate colors) and a name
+    return user("Bryce", isFirstPlayer, "GREEN")
