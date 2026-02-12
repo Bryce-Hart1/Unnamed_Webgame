@@ -10,7 +10,7 @@ class drawn:
         self.object = object
 
 
-class resource:
+class Resource:
     def __init__(self, hasMetal : bool, hasWood : bool, hasGold : bool, hasOil : bool, hasSilcon : bool, hasUranium : bool):
         self.Iron = hasMetal
         self.Gold = hasGold
@@ -19,18 +19,24 @@ class resource:
         self.Silcon = hasSilcon
         self.Uranium = hasUranium
     def displayResources(self): 
-        print("Iron: {}, Gold: {}, Wood: {}, Oil: {}, Silcon: {}, Uranium", self.Iron,
+        print("I: {}, G: {}, W: {}, O: {}, S: {}, U", self.Iron,
                self.Gold, self.Gold, self.Wood, self.Oil, self.Silcon, self.Uranium)
 
     
 
 class chunk:
-    def __init__(self, size : int, r : resource, type : str):
-        self.resources = r
+    def __init__(self, size : int, resource : Resource, biome : str):
+        self.resources = resource
         self.size = size
-        self.type = type
-        self.drawnAt = []
+        self.biome = biome
+        self.drawn_positions = []
+    
 
+    def chunkAsStr(self):
+        return (f"{self.biome} {self.resources.displayResources()}")
+        
+
+    #both draw and erase updates ONE TILE in a chunk
     def Draw(self, x : int, y : int, picture : str):
         self.drawnAt.append((drawn(x,y,picture)))
         return
@@ -52,17 +58,17 @@ def getRandomChance(precent):
 
 def pickResource(onWater):
     if(onWater):
-        return resource(False, False, False, True, False, False) #temp for now, only returns oil
+        return Resource(False, False, False, True, False, False) #temp for now, only returns oil
     if(getRandomChance(25)): #25 precent chance to do this
-        return resource(False, True, False, False, False, False) #returns wood as the resource
+        return Resource(False, True, False, False, False, False) #returns wood as the resource
     if(getRandomChance(25)): #25 percent oil well chance
-        return resource(False, False, False, True, False, False)
+        return Resource(False, False, False, True, False, False)
     #otherwise pick from ores the ground ores and have a chance at generating
     uMine = getRandomChance(10) #10 precent chance to get uranium mine
     sMine = getRandomChance(15) #15 precent chance to get silcon
     mMine = True #always get metal
     gMine = getRandomChance(35)
-    return resource(mMine, False, gMine, False, sMine, uMine)
+    return Resource(mMine, False, gMine, False, sMine, uMine)
 
     #currently not finished. We need a way to determine (randomly generated or not) what resources a spot should generate.
     #for example, if we have a water spot, we should not be able to place trees or ores for example, only oil, because this is the only one that makes
@@ -89,6 +95,6 @@ def generateChunk(remaining):
 def generateMap():
     myMap = []
     TOTAL_CHUNKS = 64
-    for chunk in TOTAL_CHUNKS:
-        myMap.append(generateChunk)
+    for chunk in range(TOTAL_CHUNKS):
+        myMap.append(generateChunk(42))
     return myMap

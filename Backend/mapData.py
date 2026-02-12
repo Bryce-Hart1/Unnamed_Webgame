@@ -1,12 +1,16 @@
-import createMap
+import createMap as CM 
 import random
 
 #this file should actually contain all the data pretaining to the map. Sprites, levels, everything.
 
 
 def getMapObject(obj : str, ID : int):
-    pass #this is up in the air, but i was thinking this stores levels of different objects. then, when we need
-    #to print or send this object it has a name.
+
+    #this is up in the air, but i was thinking this stores levels of different objects. then, when we need
+    #to print or send this object it has a name
+
+    return ("objectName")
+
 
 
 
@@ -26,8 +30,11 @@ def initalizeMap():
     pass
 
 
-
 def main():
-    myMapTest = createMap.generateMap()
+    myMapTest = CM.generateMap()
+    counter = 0
     for chunk in myMapTest:
-        print(createMap.chunk.displayResources() + "\n")
+        counter += 1
+        print(f"{counter}. {chunk.chunkAsStr()}")
+if __name__ == "__main__":
+    main()
