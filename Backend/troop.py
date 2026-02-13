@@ -5,3 +5,16 @@ class troop:
         self.name = name #dont know exactly how I want to do attacks yet.
         self.damage = 0
         self.health = 0
+
+
+
+
+
+
+
+
+
+
+class infantry(troop):
+    def __init__(self, name : str):
+        pass
