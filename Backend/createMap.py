@@ -25,6 +25,7 @@ class Resource:
 
 class chunk:
     def __init__(self, size : int, resource : Resource, biome : str):
+        self.ownedBy = "none"
         self.resources = resource
         self.size = size
         self.biome = biome
@@ -33,6 +34,9 @@ class chunk:
 
     def chunkAsStr(self):
         return (f"{self.biome} {self.resources.displayResources()}")
+    
+    def changeOwnership(self, userName : str):
+        self.ownedBy = userName
         
 
     #both draw and erase updates ONE TILE in a chunk
@@ -46,6 +50,9 @@ class chunk:
         # building destroyed at 4,4. Well, we could have a new texture to replace that one. we can either restore it (to say, grass) or 
         #something else, like rubble. 
         pass #pass basically is used for unfilled functions
+    
+    def Erase_All(self):
+        self.drawn_positions.clear()
 
         
 # returns a random precent. For example
@@ -55,7 +62,7 @@ def getRandomChance(percent):
     return (roll <= percent)
 
 
-def pickResource(onWater):
+def pickResource(onWater : bool, hasGrass : bool):
     if(onWater):
         return Resource(False, False, False, True, False, False) #temp for now, only returns oil
     if(getRandomChance(25)): #25 precent chance to do this
@@ -83,19 +90,19 @@ def pickResource(onWater):
 # for now. Right now it should just return a chunk object for the map
 def generateChunk(remaining):
     SET_CHUNK_SIZE = 64
-    biomes = ("desert", "grassland") #list of biomes to pick from
-    resourcesForChunk
-    #first pick biome
+    biomes = ("desert", "grass", "forest") #list of biomes to pick from
+    resources_for_chunk # return THIS for resources
+    chose_bio #return THIS for biome
     if getRandomChance(50): #50% chance to be land
-        resourcesForChunk = pickResource(False)
-        returnChunk = chunk(SET_CHUNK_SIZE,resourcesForChunk, "Desert") #format
-    else:
-        resourcesForChunk = pickResource(True)
-        returnChunk = chunk(64)
+        resources_for_chunk = pickResource(False, getRandomChance(70)) #70 precent chance to have grass
+        chose_bio = biomes[random.randint(0,(len(biomes)-1))] #will choose one of the above biomes
+        returnChunk = chunk(SET_CHUNK_SIZE,resources_for_chunk, chose_bio) #format
+    else: #water
+        resources_for_chunk = pickResource(True, False)
 
 
 
-    return returnChunk
+    return chunk(SET_CHUNK_SIZE, resources_for_chunk, chose_bio)
 
         
 #fill a list (Like a vector) with all of the chunks for this map. So say our map is 8 x 8, we have 64 chunks to generate.) Then when we go to print on the
