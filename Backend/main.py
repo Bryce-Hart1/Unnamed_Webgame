@@ -4,6 +4,7 @@ import createMap as CM # When using something from create map us CM
 import mapData as Mdata # same here
 import user as userf
 from enum import Enum
+from pydantic import BaseModel
 
 class gameStates(Enum):
     IN_LOBBY = 1
@@ -62,11 +63,11 @@ def pressedStartNewGame():
 
 
 #server related functions go below here
-application = FastAPI()
+app = FastAPI()
 
 
 # Allow frontend connection
-application.add_middleware(
+app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=True,
@@ -77,6 +78,6 @@ application.add_middleware(
 
 
 
-@application.get("/")
-def read_root():
+@app.get("/")
+def check_message():
     return {"message": "server running"}
