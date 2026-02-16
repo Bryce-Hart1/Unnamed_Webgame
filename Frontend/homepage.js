@@ -1,0 +1,1 @@
+//this file is for animations and javascript needed for the index.html (main splash page)
