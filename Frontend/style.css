@@ -1,0 +1,12 @@
+body { /*for background */
+    background: linear-gradient(135deg, #125e1d, #16213e);
+}
+
+.main-card { /*for splashpage background */
+    background: rgba(255, 255, 255, 0.124); 
+    /* rgba lets you set opacity as the 4th value (0.05 = nearly transparent white) */
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.5);
+}
+

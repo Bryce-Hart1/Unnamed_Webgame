@@ -1,4 +1,5 @@
 //this file is for animations and javascript needed for the index.html (main splash page)
+import { animate } from 'animejs';
 
 const homePageCreateGameButton =  document.getElementById('homePage_creategame_button');
 const homePageJoinGameButtom = document.getElementById('homePage_joingame_button');
@@ -21,6 +22,15 @@ class usersCustomization {
     }
 
 }
+
+
+//main cards animation, this is just a concept for now
+animate('.main-card', {
+    opacity: [0, 1],       // animate FROM 0 TO 1
+    translateY: [-30, 0],  // slide down from 30px above
+    duration: 600,         // in milliseconds
+    easing: 'easeOutExpo'  // controls the "feel" of the animation curve
+});
 
 
 currentUser = new usersCustomization();

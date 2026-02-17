@@ -8,9 +8,26 @@
 </head>
 <body>
     <h1>Welcome to the lobby</h1>
+    <div class="main-card">
+    <div class="customization">
+        <input type="text" placeholder="Enter your name..." />
+        <div class="color-row">
+            <!-- a few divs with background colors -->
+            <div class="color-circle" style="background:#e74c3c"></div>
+            <div class="color-circle" style="background:#3498db"></div>
+            <!-- etc -->
+        </div>
+    </div>
+
+    <button class="create-btn">Create Game</button>
+
+    <div class="join-row">
+        <input type="text" placeholder="Game code..." />
+        <button>Join</button>
+    </div>
+</div>
     <button id = 'startGame_button'>This button starts the game</button>
     <p id="response-message">Response will appear here...</p>
     <script src="lobby.js"></script>
 </body>
 </html>
-
