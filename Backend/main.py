@@ -38,8 +38,9 @@ def endThisGame(thisGame : int):
 #defines a single game instance. can be multiple at one time.
 #we need setters so game variables can be easily updated
 class game:
+    MAX_PLAYERS = 8 #if this is reached, no one else can join
+
     def __init__(self):
-        MAX_PLAYERS = 8 #if this is reached, no one else can join
         self.id = setGameId()
         self.currentGameState = gameStates.IN_LOBBY
         self.currentGameCode = Mdata.createGameCode()
