@@ -18,3 +18,31 @@ class troop:
 class infantry(troop):
     def __init__(self, name : str):
         pass
+
+class smallSky(troop):
+    def __init__(self, name):
+        pass
+
+class bigSky(troop):
+    pass
+
+
+class smallWater(troop):
+    pass 
+
+class bigWater(troop):
+    pass
+
+class smallLand(troop):
+    pass
+
+class bigLand(troop):
+    pass
+
+
+#special troops 
+class spyPlane:
+    pass
+
+class subMarine:
+    pass
