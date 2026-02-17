@@ -32,12 +32,16 @@ tier three
 ```
 Uranium
 ```
+# we could possibly have a bloons like system where you could spend resources to get different types of troops
+- ex. upgrade basic troop (which could start off as a rifleman) to sniper, heavy gunner or a plane to fighter plane, bomber
 
 # possible buildable troops
 - Basic troop (only deployable in hundreds)
-- Tank
+- Tank (possibly replace with a generic vehicle type, tank is just a type of vehicle that can be "trained" once researched)
 - plane
 - boat
+- carriers (boat type: transport troops, planes, tanks, etc over water to another area over water in case we are doing islands)
+- missile trucks (fire missiles from a distance (a cell or two over), not crazy damage but could kill basic unmoving infantry, counter by moving troops)
 
 ## special troops 
 - spy plane
@@ -46,7 +50,8 @@ Uranium
 # possible future features
 - pause
 - random 
-
+- Research plot to upgrade things like troop training times, less resources to train troops, research new troops etc
+- players can possibly find abandoned bunkers around the map to find basic resources early game, gives incentive to explore map early to get ahead of others
 
 
 
