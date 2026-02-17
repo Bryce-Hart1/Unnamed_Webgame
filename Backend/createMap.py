@@ -1,6 +1,6 @@
 import random
 
-
+#bazinga
 
 #gives a cord (inside the chunk), along with a string saying what has been drawn
 class drawn: 
