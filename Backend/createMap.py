@@ -16,21 +16,21 @@ class Resource:
         self.Gold = hasGold
         self.Wood = hasWood
         self.Oil = hasOil
-        self.Silcon = hasSilcon
+        self.Silicon = hasSilcon
         self.Uranium = hasUranium
     def displayResources(self): 
 
-        if(self.hasMetal):
+        if(self.Iron):
             print("Metal")
-        elif(self.hasGold):
+        elif(self.Gold):
             print("Gold")
-        elif(self.hasWood):
+        elif(self.Wood):
             print("Wood")
-        elif(self.hasOil):
+        elif(self.Oil):
             print("Oil")
-        elif(self.hasSilicon):
+        elif(self.Silicon):
             print("Silicon")
-        elif(self.hasUranium):
+        elif(self.Uranium):
             print("Uranium")
     
 
