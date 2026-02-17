@@ -88,18 +88,17 @@ def pickResource(onWater : bool, hasGrass : bool):
 #returns a chunk object. For now we could have it hard set for some sort of pattern, but this should generate EVERYTHING relating to the chunk, including type,
 # whats underneath, what the surface looks like, etc. I think we should build and flush out this function, but leave the more random generation parts out of it 
 # for now. Right now it should just return a chunk object for the map
+
+#Updated this to remove unneeded variables -Zak
 def generateChunk(remaining):
     SET_CHUNK_SIZE = 64
     biomes = ("desert", "grass", "forest") #list of biomes to pick from
-    resources_for_chunk # return THIS for resources
-    chose_bio #return THIS for biome
     if getRandomChance(50): #50% chance to be land
         resources_for_chunk = pickResource(False, getRandomChance(70)) #70 precent chance to have grass
         chose_bio = biomes[random.randint(0,(len(biomes)-1))] #will choose one of the above biomes
-        returnChunk = chunk(SET_CHUNK_SIZE,resources_for_chunk, chose_bio) #format
     else: #water
         resources_for_chunk = pickResource(True, False)
-
+        chose_bio = "water"
 
 
     return chunk(SET_CHUNK_SIZE, resources_for_chunk, chose_bio)
