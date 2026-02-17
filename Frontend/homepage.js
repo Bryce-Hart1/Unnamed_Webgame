@@ -16,7 +16,7 @@ homePageCreateGameButton.addEventListener('click', function() {requestedGameStar
 
 
 async function requestedGameStart(){
-    const url = "WhateverTheFastAPIurlIs";
+    const url = "WhateverTheFastAPIurlIsToLobby";
     try{
         const response = await fetch(url);
         if(!response.ok){
@@ -27,7 +27,7 @@ async function requestedGameStart(){
 
     }catch(error){
         console.log(error);
-        console.log("An Error occured when requesting game start.");
+        console.log("An Error occured when requesting lobby start.");
     }
     window.location.href = "lobby.html";
     //whatever we need for the game start is done here, like go to lobby screen and do backend stuff
