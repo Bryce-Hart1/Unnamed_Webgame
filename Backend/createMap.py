@@ -90,8 +90,8 @@ def pickResource(onWater : bool, hasGrass : bool):
 # for now. Right now it should just return a chunk object for the map
 
 #Updated this to remove unneeded variables -Zak
-def generateChunk(remaining):
-    SET_CHUNK_SIZE = 64
+def generateChunk(THE_CHUNK_SIZE):
+    SET_CHUNK_SIZE = THE_CHUNK_SIZE #this is passed im from gernate map to give complete control to generateMap
     biomes = ("desert", "grass", "forest") #list of biomes to pick from
     if getRandomChance(50): #50% chance to be land
         resources_for_chunk = pickResource(False, getRandomChance(70)) #70 precent chance to have grass
@@ -107,9 +107,11 @@ def generateChunk(remaining):
 #fill a list (Like a vector) with all of the chunks for this map. So say our map is 8 x 8, we have 64 chunks to generate.) Then when we go to print on the
 # frontend, we can just take the width sqrt(TOTAL_CHUNKS) and know what the map would be and how to format it. This is considering the map is square,
 # which i think it should be. lmk if you have questions
+# IMPOERANT generatemap should have complete control over chunks and map size for ease of changing
 def generateMap():
     myMap = []
-    TOTAL_CHUNKS = 64
+    HOW_BIG_A_CHUNK_IS = 64 #different from total chunks, this is how big a individual chunk object is
+    TOTAL_CHUNKS = 64 #if you wish to change map size DO IT HERE
     for chunk in range(TOTAL_CHUNKS):
-        myMap.append(generateChunk(42))
+        myMap.append(generateChunk(HOW_BIG_A_CHUNK_IS))
     return myMap
