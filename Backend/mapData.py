@@ -21,7 +21,7 @@ def createGameCode():
 def initalizeMap():
     pass
 
-
+#this is temp for testing
 def main():
     myMapTest = CM.generateMap()
     counter = 0

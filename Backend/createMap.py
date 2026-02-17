@@ -84,6 +84,7 @@ def pickResource(onWater : bool, hasGrass : bool):
 
 
 
+
 #returns a chunk object. For now we could have it hard set for some sort of pattern, but this should generate EVERYTHING relating to the chunk, including type,
 # whats underneath, what the surface looks like, etc. I think we should build and flush out this function, but leave the more random generation parts out of it 
 # for now. Right now it should just return a chunk object for the map
