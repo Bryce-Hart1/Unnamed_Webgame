@@ -24,12 +24,11 @@ async function requestedGameStart(){
         }
         const data = await response.json();
         console.log(data);
-        document.getElementById('response-message').innerText = `Message: ${data.message}, Data: ${data.data}`;
-
 
     }catch(error){
-        document.getElementById(response.message).innerText('Data transfer failed, should see data from game');
-
+        console.log(error);
+        console.log("An Error occured when requesting game start.");
     }
+    window.location.href = "lobby.html";
     //whatever we need for the game start is done here, like go to lobby screen and do backend stuff
 }
