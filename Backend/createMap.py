@@ -19,8 +19,19 @@ class Resource:
         self.Silcon = hasSilcon
         self.Uranium = hasUranium
     def displayResources(self): 
-        print(self.Iron, self.Gold, self.Gold, self.Wood, self.Oil, self.Silcon, self.Uranium)
 
+        if(self.hasMetal):
+            print("Metal")
+        elif(self.hasGold):
+            print("Gold")
+        elif(self.hasWood):
+            print("Wood")
+        elif(self.hasOil):
+            print("Oil")
+        elif(self.hasSilicon):
+            print("Silicon")
+        elif(self.hasUranium):
+            print("Uranium")
     
 
 class chunk:
