@@ -41,6 +41,7 @@ Uranium
 - plane
 - boat
 - carriers (boat type: transport troops, planes, tanks, etc over water to another area over water in case we are doing islands)
+// I like these, we need to consider things like water depth maybe, we dont have to but just an idea - bryce
 - missile trucks (fire missiles from a distance (a cell or two over), not crazy damage but could kill basic unmoving infantry, counter by moving troops)
 
 ## special troops 
@@ -50,8 +51,10 @@ Uranium
 # possible future features
 - pause
 - random 
-- Research plot to upgrade things like troop training times, less resources to train troops, research new troops etc
-- players can possibly find abandoned bunkers around the map to find basic resources early game, gives incentive to explore map early to get ahead of others
+- Research plot to upgrade things like troop training times, less resources to train troops, research new troops etc // I like this idea alot = bryce
+- players can possibly find abandoned bunkers around the map to find basic 
+resources early game, gives incentive to explore map early to get ahead of others // There is a few questions about how we would implement this, but this is
+very doable - bryce
 
 
 
