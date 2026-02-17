@@ -27,5 +27,5 @@ async function gameMustStart(){
         console.log(error);
         console.log("An Error occured when requesting game start.");
     }
-    window.location.href = "lobby.html";
+    window.location.href = "gamepage.html";
 }
