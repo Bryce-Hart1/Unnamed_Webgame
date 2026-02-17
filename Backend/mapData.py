@@ -15,7 +15,7 @@ def printMap(map):
 def createGameCode():
     returnStr = ""
     for i in range(5):
-        returnStr += chr(random(65,90))
+        returnStr += chr(random.randint(65,90))
     return returnStr
 
 def initalizeMap():
