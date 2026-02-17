@@ -78,3 +78,9 @@ drawn = {lvl_one_jet[0][1], oil_rig[4][4]} //This could be its own array
 ores = {oil} //only oil true for this grid 
 owner = "Bryce" //who owns tile
 ```
+
+
+
+# user customization 
+the user customization should be simple, I was thinking something like scribblio where you pick 1/2 accessories, and a color. This is held on the frontend until the user is ready to join. As soon as the person joins, thus info is sent to the
+backend and stored in that games instance. 
