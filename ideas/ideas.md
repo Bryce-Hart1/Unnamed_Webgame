@@ -58,7 +58,10 @@ very doable - bryce
 
 
 
-
+# how troops work
+Every troop has a type - think about it like rock paper scissors where all of them have a weakness, except for special types which we can make an exception for
+One example i was thinking of - land troops are weak to air troops, but air troops are weak to missle trucks, but missle trucks are weak to ground troops
+For this weakness, they can have a multiplier on damage.
 
 
 # the tech
