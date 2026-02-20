@@ -3,8 +3,14 @@ import { animate } from 'animejs';
 
 const homePageCreateGameButton =  document.getElementById('homePage_creategame_button');
 const homePageJoinGameButtom = document.getElementById('homePage_joingame_button');
-const homePageSelectColorLeft = document.getElementById('homePage_Colorleft');
-const homePageSelectColorRight = document.getElementById('homePage_ColorRight');
+
+const homePageSelectColorLeft = document.getElementById('homepage_ColorLeft');
+const homePageSelectColorRight = document.getElementById('homepage_ColorRight');
+const homePageSelectTopLeft = document.getElementById('homepage_TopLeft');
+const homePageSelectTopRight = document.getElementById('homepage_TopRight');
+const homePageSelectBottomLeft = document.getElementById('homepage_BottomLeft');
+const homePageSelectBottomRight = document.getElementById('homepage_BottomRight');
+
 const colorArray = ["red", "orange", "yellow", "green", "blue", "purple"];
 const topArray = ["top1", "top2", "top3", "top4", "top5"];
 const bottomArray = ["bottom1", "bottom2", "bottom3", "bottom4", "bottom5"];
@@ -35,10 +41,17 @@ animate('.main-card', {
 
 currentUser = new usersCustomization();
 
-
+//button clicks for user customization on homescreen
 homePageCreateGameButton.addEventListener('click', function() {requestedGameStart()}); //if homepage start button is pressed call gamestart
+//select Color customization
 homePageSelectColorLeft.addEventListener('click', function() { currentUser.color = getNewCustomizationInWheel(colorArray, this.colorID, false); });
 homePageSelectColorRight.addEventListener('click', function(){currentUser.color = getNewCustomizationInWheel(colorArray, this.colorID, true)});
+//select top customization
+homePageSelectTopLeft.addEventListener('click', function(){currentUser.top = getNewCustomizationInWheel(topArray, topID, false)});
+homePageSelectTopRight.addEventListener('click', function(){currentUser.top = getNewCustomizationInWheel(topArray, topID, true)});
+//select bottom customization
+homePageSelectBottomLeft.addEventListener('click', function() {currentUser.bottom = getNewCustomizationInWheel(bottomArray, bottomID, false)});
+homePageSelectBottomRight.addEventListener('click', function() {currentUser.bottom = getNewCustomizationInWheel(bottomArray, bottomID, true)})
 
 
 
@@ -50,7 +63,12 @@ homePageSelectColorRight.addEventListener('click', function(){currentUser.color 
 
 
 
-//takes in spot in array and direction and returns a string of the next item wanted, will do tops, bottoms and colors
+/*
+*takes in spot in array and direction and returns a string of the next item wanted, will do tops, bottoms and colors
+* @param {string[]} Array the array of the customization piece you would like 
+* @param {number} currentID The id number of the matching array type
+* @param {boolean} is the array moving right? True if yes, Right if no
+**/
 function getNewCustomizationInWheel(Array, currentID, isRight){
     if(isRight){
         if(currentID == (Array.length()-1)){
