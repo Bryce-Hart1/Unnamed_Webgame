@@ -1,106 +1,99 @@
-//this file is for animations and javascript needed for the index.html (main splash page)
-import { animate } from 'animejs';
-
-const homePageCreateGameButton =  document.getElementById('homePage_creategame_button');
-const homePageJoinGameButtom = document.getElementById('homePage_joingame_button');
-
-const homePageSelectColorLeft = document.getElementById('homepage_ColorLeft');
-const homePageSelectColorRight = document.getElementById('homepage_ColorRight');
-const homePageSelectTopLeft = document.getElementById('homepage_TopLeft');
-const homePageSelectTopRight = document.getElementById('homepage_TopRight');
-const homePageSelectBottomLeft = document.getElementById('homepage_BottomLeft');
-const homePageSelectBottomRight = document.getElementById('homepage_BottomRight');
-
-const colorArray = ["red", "orange", "yellow", "green", "blue", "purple"];
-const topArray = ["top1", "top2", "top3", "top4", "top5"];
-const bottomArray = ["bottom1", "bottom2", "bottom3", "bottom4", "bottom5"];
+// GRAB ELEMENTS FROM THE DOM 
+//if adding anything, put it here
+const nameInput        = document.getElementById('name-input');
+const figureHead       = document.getElementById('figure-head');
+const figureBody       = document.getElementById('figure-body');
+const figureNameBadge  = document.getElementById('figure-name-badge');
+const swatches         = document.querySelectorAll('.swatch'); // gets ALL elements with class "swatch"
+const createGameButton = document.getElementById('create-game-button');
+const joinGameButton   = document.getElementById('join-game-button');
+const gameCodeInput    = document.getElementById('game-code-input');
 
 
+// ================================
+// PLAYER STATE
+// We track what the player has selected here.
+// This is what eventually gets sent to the backend.
+// ================================
+let playerState = {
+    name: '',
+    color: 'GRAY',
+};
 
-class usersCustomization {
-    constructor() {
-        this.color = "red";
-        this.colorID = 0;
-        this.top = "topZero";
-        this.topID = 0;
-        this.bottom = "BottomZero";
-        this.bottomID = 0;
+
+// ================================
+// NAME INPUT — live preview
+// 'input' fires every time the user types a character.
+// ================================
+nameInput.addEventListener('input', function() {
+    playerState.name = nameInput.value;
+
+    // Update the badge under the figure in real time.
+    // If the field is empty, show "???" as a placeholder.
+    if (nameInput.value.trim() === '') {
+        figureNameBadge.textContent = '???';
+    } else {
+        figureNameBadge.textContent = nameInput.value.toUpperCase();
     }
-
-}
-
-
-//main cards animation, this is just a concept for now
-animate('.main-card', {
-    opacity: [0, 1],       // animate FROM 0 TO 1
-    translateY: [-30, 0],  // slide down from 30px above
-    duration: 600,         // in milliseconds
-    easing: 'easeOutExpo'  // controls the "feel" of the animation curve
 });
 
 
-currentUser = new usersCustomization();
+// ================================
+// COLOR SWATCHES — live preview
+//
+// We loop over every swatch and attach a click listener.
+// When one is clicked:
+//   1. We remove "selected" from all swatches
+//   2. We add "selected" to the one that was clicked
+//   3. We read its data-color attribute to know which color was picked
+//   4. We update the figure's color
+// ================================
+swatches.forEach(function(swatch) {
+    swatch.addEventListener('click', function() {
 
-//button clicks for user customization on homescreen
-homePageCreateGameButton.addEventListener('click', function() {requestedGameStart()}); //if homepage start button is pressed call gamestart
-//select Color customization
-homePageSelectColorLeft.addEventListener('click', function() { currentUser.color = getNewCustomizationInWheel(colorArray, this.colorID, false); });
-homePageSelectColorRight.addEventListener('click', function(){currentUser.color = getNewCustomizationInWheel(colorArray, this.colorID, true)});
-//select top customization
-homePageSelectTopLeft.addEventListener('click', function(){currentUser.top = getNewCustomizationInWheel(topArray, topID, false)});
-homePageSelectTopRight.addEventListener('click', function(){currentUser.top = getNewCustomizationInWheel(topArray, topID, true)});
-//select bottom customization
-homePageSelectBottomLeft.addEventListener('click', function() {currentUser.bottom = getNewCustomizationInWheel(bottomArray, bottomID, false)});
-homePageSelectBottomRight.addEventListener('click', function() {currentUser.bottom = getNewCustomizationInWheel(bottomArray, bottomID, true)})
+        // Step 1: clear selection from everything
+        swatches.forEach(function(s) { s.classList.remove('selected'); });
+
+        // Step 2: mark this one as selected
+        swatch.classList.add('selected');
+
+        // Step 3: read the color name (e.g. "GREEN", "RED")
+        const pickedColor = swatch.dataset.color;  // reads the data-color attribute
+        playerState.color = pickedColor;
+
+        // Step 4: update the figure — we grab the actual CSS color from the swatch's background
+        // getComputedStyle reads the actual rendered color of the element
+        const actualCSSColor = getComputedStyle(swatch).backgroundColor;
+        figureHead.style.backgroundColor = actualCSSColor;
+        figureBody.style.backgroundColor = actualCSSColor;
+    });
+});
 
 
+// ================================
+// CREATE GAME BUTTON
+// For now: just redirect to lobby.html.
+// Later: send playerState to backend first, then redirect.
+// ================================
+createGameButton.addEventListener('click', function() {
+    // TODO: validate that name is not empty before allowing this
+    window.location.href = 'lobby.html';
+});
 
 
+// ================================
+// JOIN GAME BUTTON
+// For now: just logs what would be sent.
+// Later: send playerState + game code to backend.
+// ================================
+joinGameButton.addEventListener('click', function() {
+    const code = gameCodeInput.value.trim().toUpperCase();
 
-
-
-
-
-
-
-/*
-*takes in spot in array and direction and returns a string of the next item wanted, will do tops, bottoms and colors
-* @param {string[]} Array the array of the customization piece you would like 
-* @param {number} currentID The id number of the matching array type
-* @param {boolean} is the array moving right? True if yes, Right if no
-**/
-function getNewCustomizationInWheel(Array, currentID, isRight){
-    if(isRight){
-        if(currentID == (Array.length()-1)){
-            return Array[0];
-        }
-        return Array[currentID + 1];
-    }else{ // goes left
-        if(currentColorID == 0){
-            return Array[Array.length()-1]; //return last element
-        }
-        return Array[currentID - 1];
+    if (code.length !== 5) {
+        alert('Game code must be 5 characters!');
+        return;
     }
-}
 
-
-
-
-
-async function requestedGameStart(){
-    const url = "WhateverTheFastAPIurlIsToLobby";
-    try{
-        const response = await fetch(url);
-        if(!response.ok){
-            throw new error(`http error. status: ${response.status}` );
-        }
-        const data = await response.json();
-        console.log(data);
-
-    }catch(error){
-        console.log(error);
-        console.log("An Error occured when requesting lobby start.");
-    }
-    window.location.href = "lobby.html";
-    //whatever we need for the game start is done here, like go to lobby screen and do backend stuff
-}
+    // TODO: send playerState and code to backend
+    console.log('Joining game with:', playerState, 'Code:', code);
+});

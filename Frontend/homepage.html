@@ -3,14 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Title</title>
+    <title>Unnamed Web Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Welcome to unnamed web game! This is the home page</h1>
-    <button id = 'homePage_creategame_button'>This button makes a game </button>
-    <p id="response-message">Response will appear here...</p>
+
+    <!-- ============================
+         TITLE AREA
+         Just a placeholder for now. 
+         Will eventually be a logo.
+    ============================= -->
+    <header>
+        <h1>UNNAMED WEB GAME</h1>
+    </header>
+
+
+    <main class="main-card"> <!-- both of the body panels go here-->
+
+
+        <section class="panel panel-left">
+
+            <div class="enlistment-body"> 
+
+                <!-- The visual figure preview -->
+                <div class="figure-preview">
+                    <!-- 
+                        This is a very simple CSS figure.
+                        It's just two divs: a circle (head) and a rectangle (body).
+                        JavaScript will change the color of these when the player picks a color.
+                    -->
+                    <div class="figure-head" id="figure-head"></div>
+                    <div class="figure-body" id="figure-body"></div>
+
+                    <!-- JavaScript updates this in real time as the player types. -->
+                    <div class="figure-name-badge" id="figure-name-badge">???</div>
+                </div>
+
+
+                <!-- The controls: name input + color swatches -->
+                <div class="enlistment-controls">
+
+                    <label for="name-input">NAME</label>
+                    <input 
+                        type="text" 
+                        id="name-input" 
+                        placeholder="Enter name..." 
+                        maxlength="16"
+                    />
+
+                    <label>COLOR</label>
+                    <!-- 
+                        Each swatch is a div with a data-color attribute.
+                        JavaScript reads that attribute to know which color was picked.
+                        The "selected" class will be added by JS to highlight the active one.
+                    -->
+                    <div class="color-swatches">
+                        <div class="swatch" data-color="GREEN"  style="background-color: green;"></div>
+                        <div class="swatch" data-color="RED"    style="background-color: red;"></div>
+                        <div class="swatch" data-color="BLUE"   style="background-color: blue;"></div>
+                        <div class="swatch" data-color="YELLOW" style="background-color: yellow;"></div>
+                        <div class="swatch" data-color="ORANGE" style="background-color: orange;"></div>
+                        <div class="swatch" data-color="PURPLE" style="background-color: purple;"></div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ============================
+             Just a visual line between the two panels.
+        ============================= -->
+        <div class="panel-divider"></div>
+
+
+        <!-- ============================
+             RIGHT PANEL — "MISSION BRIEFING"
+             This is where the player joins or creates a game.
+             Two options:
+               - Enter a code and join an existing game
+               - Create a new game (redirects to lobby for now)
+        ============================= -->
+        <section class="panel panel-right">
+            <h2 class="panel-title">MISSION BRIEFING</h2>
+
+            <!-- Join an existing game -->
+            <div class="mission-option">
+                <label for="game-code-input">ENTER GAME CODE</label>
+                <div class="join-row">
+                    <input 
+                        type="text" 
+                        id="game-code-input" 
+                        placeholder="XXXXX" 
+                        maxlength="5"
+                    />
+                    <button id="join-game-button">JOIN</button>
+                </div>
+            </div>
+
+            <div class="or-divider">— OR —</div>
+
+            <!-- or create a new game -->
+            <div class="mission-option">
+                <button id="create-game-button">CREATE GAME</button>
+            </div>
+
+        </section>
+
+    </main>
+
     <script src="homepage.js"></script>
 </body>
 </html>
-
