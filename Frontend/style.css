@@ -1,12 +1,253 @@
-body { /*for background */
-    background: linear-gradient(135deg, #125e1d, #16213e);
+/* ================================
+   GENERAL PAGE
+   Centers everything and gives a 
+   plain background for now.
+================================ */
+body {
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #c2a97a; /* placeholder earthy/khaki tone */
+    font-family: monospace; /* placeholder military-ish font */
 }
 
-.main-card { /*for splashpage background */
-    background: rgba(255, 255, 255, 0.124); 
-    /* rgba lets you set opacity as the 4th value (0.05 = nearly transparent white) */
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 16px;
-    box-shadow: 0 0 40px rgba(0,0,0,0.5);
+header h1 {
+    letter-spacing: 6px;
+    text-align: center;
 }
 
+
+/* ================================
+   Main card for lobby
+   The outer container for both panels.
+   display: flex puts the two panels side by side.
+================================ */
+.main-card {
+    display: flex;           /* children (panels) sit next to each other */
+    flex-direction: row;     /* left to right */
+    align-items: stretch;    /* both panels grow to the same height */
+    background-color: #e8dcc8;
+    border: 3px solid #333;
+    border-radius: 8px;
+    padding: 24px;
+    gap: 24px;               /* space between the two panels */
+    max-width: 800px;
+    width: 100%;
+}
+
+
+/* ================================
+   PANELS (shared styles)
+   Both panels share this base.
+================================ */
+.panel {
+    flex: 1; /* each panel takes up equal space */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.panel-title {
+    margin: 0;
+    letter-spacing: 3px;
+    font-size: 14px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 6px;
+}
+
+
+/* ================================
+   DIVIDER
+   The vertical line between panels.
+================================ */
+.panel-divider {
+    width: 2px;
+    background-color: #333;
+    align-self: stretch; /* grows to fill the full height of the card */
+}
+
+
+/* ================================
+   LEFT PANEL — ENLISTMENT FORM
+================================ */
+
+/* 
+   enlistment-body puts the figure and controls side by side.
+   This is the "Option B" layout we decided on.
+*/
+.enlistment-body {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+/* 
+   The figure preview column.
+   Centered so the figure and name badge stack neatly.
+*/
+.figure-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+/* 
+   The head: a circle.
+   background-color is changed by JavaScript when a color is picked.
+*/
+.figure-head {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;          /* makes it a circle */
+    background-color: gray;      /* default until player picks */
+    border: 2px solid #333;
+}
+
+/* 
+   The body: a rectangle.
+   Same color as the head — JS updates both together.
+*/
+.figure-body {
+    width: 30px;
+    height: 55px;
+    background-color: gray;
+    border: 2px solid #333;
+    border-radius: 4px;
+}
+
+.figure-name-badge {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    background-color: #333;
+    color: #e8dcc8;
+    padding: 2px 8px;
+    border-radius: 4px;
+    max-width: 80px;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; /* shows "..." if name is too long */
+}
+
+/* 
+   Controls column: stacks label, input, label, swatches vertically.
+*/
+.enlistment-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.enlistment-controls label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.enlistment-controls input {
+    padding: 6px;
+    font-family: monospace;
+    border: 2px solid #333;
+    border-radius: 4px;
+    background-color: #f5eedf;
+    width: 120px;
+}
+
+/* 
+   Color swatches sit in a row.
+*/
+.color-swatches {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    flex-wrap: wrap; /* wraps to next line if there are too many */
+}
+
+/* 
+   Each swatch is a colored circle.
+   The background-color is set inline in the HTML.
+*/
+.swatch {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #333;
+    cursor: pointer;
+}
+
+/* 
+   When JS adds this class, the swatch shows a ring to indicate selection.
+*/
+.swatch.selected {
+    outline: 3px solid #333;
+    outline-offset: 2px;
+}
+
+
+/* ================================
+   RIGHT PANEL — MISSION BRIEFING
+================================ */
+.mission-option {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mission-option label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+/* 
+   join-row puts the code input and JOIN button on the same line.
+*/
+.join-row {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.join-row input {
+    padding: 6px;
+    font-family: monospace;
+    font-size: 16px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    border: 2px solid #333;
+    border-radius: 4px;
+    background-color: #f5eedf;
+    width: 80px;
+}
+
+.or-divider {
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #555;
+}
+
+button {
+    padding: 10px 20px;
+    font-family: monospace;
+    font-weight: bold;
+    letter-spacing: 2px;
+    background-color: #4a6741;
+    color: white;
+    border: 2px solid #333;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #374e30;
+}
+
+#create-game-button {
+    width: 100%;
+}
