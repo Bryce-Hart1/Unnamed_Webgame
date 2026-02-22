@@ -3,13 +3,14 @@
    Centers everything and gives a 
    plain background for now.
 ================================ */
+
 body {
     margin: 0;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #c2a97a; /* placeholder earthy/khaki tone */
+    background-color: #c5a05c; /* placeholder earthy tone */
     font-family: monospace; /* placeholder military-ish font */
 }
 
@@ -28,7 +29,7 @@ header h1 {
     display: flex;           /* children (panels) sit next to each other */
     flex-direction: row;     /* left to right */
     align-items: stretch;    /* both panels grow to the same height */
-    background-color: #e8dcc8;
+    background-color: #7c7a73;
     border: 3px solid #333;
     border-radius: 8px;
     padding: 24px;
@@ -111,6 +112,8 @@ header h1 {
    The body: a rectangle.
    Same color as the head — JS updates both together.
 */
+
+/* lobby figure styles */
 .figure-body {
     width: 30px;
     height: 55px;
@@ -189,9 +192,7 @@ header h1 {
 }
 
 
-/* ================================
-   RIGHT PANEL — MISSION BRIEFING
-================================ */
+/* right pannel */
 .mission-option {
     display: flex;
     flex-direction: column;
