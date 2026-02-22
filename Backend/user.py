@@ -9,10 +9,12 @@ class userStates(Enum):
 
 
 class user:
-    def __init__(self, userName : str, isHost : bool, color : str):
+    def __init__(self, userName : str, isHost : bool, color : str, top : str, bottom : str):
         self.name = userName
         self.isTheHost = isHost
-        self.color = color
+        self.personal_color = color
+        self.personal_top = top
+        self.personal_bottom = bottom
         self.res_people = 0
         self.res_wood = 0
         self.res_metal = 0
@@ -23,6 +25,7 @@ class user:
         self.chunksOwned = [] # list of chunks
         self.baseOriginX = -1
         self.baseOriginY = -1
+    
 
     #origin should always set before the game begins, same with color
     def setOrigin(self, x : int, y : int):

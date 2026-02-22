@@ -61,25 +61,30 @@ class game:
         
 
     def userLeft(self, usersId : str):
+        if self.users.index(usersId) == 0: #user is host, assign new host, and if no one is left to assign host to end this game
+            if len(self.users) == 1:
+                #end game 
+                pass
+            else:
+                setattr(self.users, 'isTheHost', True)
+
         self.users.remove(usersId)
         return
 
     def thisGameHasStarted(self):
         self.currentGameState = gameStates.IN_GAME
         return
-        
-
-
-
-
-#user requested new game
-def pressedCreateNewGame():
-    currentGame = createNewGame()
-    currentGame.userJoined(userf.createNewUser())
-
     
 
+#if someone has a clever idea to make this the same as a user importing object, dont. I want more functionality for starting a game later
+class NewGameRequest(BaseModel):
+    host_name : str
+    host_color : str
+    host_top : str
+    host_bottom : str
+        
 
+#================================Server stuff========================================
 #server related functions go below here
 app = FastAPI()
 
@@ -93,6 +98,21 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+
+
+
+#user requested new game
+@app.post("/startGame")
+def pressedCreateNewGame(request : NewGameRequest):
+    currentGame = createNewGame()
+    host = userf.user(NewGameRequest.host_name, True, NewGameRequest.host_color, NewGameRequest.host_top, NewGameRequest.host_bottom)
+    currentGame.userJoined(host) #add host as the first list of users
+
+
+    return {}
+
+    
 
 
 
