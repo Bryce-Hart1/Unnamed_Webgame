@@ -87,3 +87,24 @@ owner = "Bryce" //who owns tile
 # user customization 
 the user customization should be simple, I was thinking something like scribblio where you pick 1/2 accessories, and a color. This is held on the frontend until the user is ready to join. As soon as the person joins, thus info is sent to the
 backend and stored in that games instance. 
+
+#sending information
+I created a new branch for the purpose of creating the below result.
+Apon startup:
+```
+Frontend : User creates a character and starts a lobby
+Backend <==[This persons character, And a request to start a new game]== frontend
+Backend ====[New game code and a generated map]========================> frontend
+Backend <=[A new user requested to join the game with game code XYZAB]== frontend
+Backend ====[This game does exist and redirect to that page]===========> frontend
+OR
+Backend =[This game doesnt exist, also gives error to user]============> frontend
+Then:
+Backend <===========[The gamecode of XYZAB has started]================= frontend
+Backend : locks lobby and starts recording
+Then:
+Backend <===========[Bryce took spot 0,5]=============================== frontend
+Backend: Ok, change has been stored
+```
+Things to decide:
+when should we start sending? how often?
