@@ -35,6 +35,9 @@ def endThisGame(thisGame : int):
     return
 
 
+whereIsGame : dict[str, int] #takes in the game code, and outputs the place in the map where it is stored
+
+
 #defines a single game instance. can be multiple at one time.
 #we need setters so game variables can be easily updated
 class game:
@@ -82,6 +85,14 @@ class NewGameRequest(BaseModel):
     host_color : str
     host_top : str
     host_bottom : str
+
+#when a new player joins, we need to send a join request to the server and as long as that is a valid code they may join
+class NewPlayerJoined(BaseModel):
+    player_name : str
+    player_color : str
+    player_top : str
+    player_bottom : str
+    players_join_code : str
         
 
 #================================Server stuff========================================
@@ -98,7 +109,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
+@app.get("/playerJoined")
+def playerJoined(player : NewPlayerJoined):
+    for gameCode in whereIsGame:
+        if player.players_join_code == whereIsGame.keys:
+            #then yes, we will assign them to that game
+            gameCode
 
 
 
@@ -108,7 +124,6 @@ def pressedCreateNewGame(request : NewGameRequest):
     currentGame = createNewGame()
     host = userf.user(NewGameRequest.host_name, True, NewGameRequest.host_color, NewGameRequest.host_top, NewGameRequest.host_bottom)
     currentGame.userJoined(host) #add host as the first list of users
-
 
     return {}
 
