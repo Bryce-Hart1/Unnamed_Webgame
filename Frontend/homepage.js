@@ -15,7 +15,7 @@ const gameCodeInput    = document.getElementById('game-code-input');
 // We track what the player has selected here.
 // This is what eventually gets sent to the backend.
 // ================================
-let playerState = {
+let playerState = { //default values
     name: '',
     color: 'GRAY',
 };
