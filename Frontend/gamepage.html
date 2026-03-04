@@ -7,7 +7,28 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Welcome to unnamed web game! The game is here</h1> 
+    <h1>Welcome to unnamed web game! The game is here</h1>
+
+    <!--
+        GRID WRAPPER
+        The server will send a size (e.g. 8×8) and potentially other
+        metadata. JavaScript populates #grid with a collection of chunk
+        elements. A scrollable container allows the user to zoom/scroll to
+        inspect individual chunks.
+    -->
+    <div id="grid-wrapper">
+        <!--
+            The inner grid is sized by JS. Each cell represents one "chunk".
+            Data attributes store properties such as:
+              data-x / data-y          : grid coordinates
+              data-terrain             : type of terrain (grass, water, etc.)
+              data-owner / data-unit   : optional gameplay info
+            The rendering script (mapRender.js) will attach event listeners
+            and update classes based on game state.
+        -->
+        <div id="grid"></div>
+    </div>
+
     <script src="mapRender.js"></script>
 </body>
 </html>

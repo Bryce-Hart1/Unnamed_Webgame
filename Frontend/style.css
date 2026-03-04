@@ -252,3 +252,28 @@ button:hover {
 #create-game-button {
     width: 100%;
 }
+
+/* ====== game grid ====== */
+/* wrapper fills viewport and scrolls when grid is larger */
+#grid-wrapper {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;      /* scroll if grid exceeds viewport */
+    background-color: #a3a18f; /* subtle contrast for grid background */
+}
+
+/* grid itself will be configured by JS to set grid-template-rows/columns */
+#grid {
+    display: grid;
+    grid-auto-rows: 50px;   /* default size per chunk; can be overridden */
+    grid-auto-columns: 50px;
+}
+
+/* individual chunk cells - size inherited from grid-template */
+.chunk {
+    box-sizing: border-box;
+    border: 1px solid #333;
+    background-color: #e0d7c2; /* placeholder terrain color */
+}
+
